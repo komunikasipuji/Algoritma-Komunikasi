@@ -18,7 +18,15 @@
 </head>
 <body>
   <h1> Tutorial</h1>
-    <div>
+  <span id="dateToday"></span>
+  <div>
+    <span>1USD = IDR</span>
+    <span id="currencyToday"></span>
+  </div>
+  
+
+
+      <div>
         <canvas id="myChart"></canvas>
       </div>
       <script>
@@ -52,8 +60,18 @@
       document.getElementById('myChart'),
       config
     );
+    
   </script>
-      
+  <script> 
+    const currentDate = new Date().toDateString();
+    elm= document.getElementById("dateToday");
+    elm.innerHTML=currentDate;
+
+    curElm = document.getElementById("currencyToday");
+    fetch ("https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd.json")
+      .then (response => response.json())
+      .then (data => curElm.innerHTML = data.usd.idr)
+  </script>
 </body>
 </html>
 
